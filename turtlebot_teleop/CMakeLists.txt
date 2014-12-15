@@ -39,3 +39,9 @@ install(TARGETS turtlebot_teleop_joy
 install(DIRECTORY launch
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
+
+## Mark executable scripts (Python etc.) for installation
+install(PROGRAMS
+  scripts/omni_teleop_key
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
