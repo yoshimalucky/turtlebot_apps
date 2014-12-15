@@ -195,4 +195,3 @@ if __name__=="__main__":
         pub.publish(twist)
 
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
-
