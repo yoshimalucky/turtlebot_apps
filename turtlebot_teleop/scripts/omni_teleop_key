@@ -30,6 +30,7 @@
 import roslib
 roslib.load_manifest('turtlebot_teleop')
 import rospy
+import time
 
 from geometry_msgs.msg import Twist
 
@@ -122,6 +123,7 @@ if __name__=="__main__":
             if key in moveBindings.keys():
                 x = moveBindings[key][0]
                 th = moveBindings[key][1]
+                y = 0
                 count = 0
             elif key in speedBindings.keys():
                 speed = speed * speedBindings[key][0]
@@ -133,11 +135,13 @@ if __name__=="__main__":
                     print msg
                 status = (status + 1) % 15
             elif key in moveBindingsY.keys():
+                x = 0
                 y = moveBindingsY[key][0]
                 th = moveBindingsY[key][1]
                 count = 0
             elif key == ' ' or key == 'k' :
                 x = 0
+                y = 0
                 th = 0
                 control_speed = 0
                 control_turn = 0
@@ -180,6 +184,9 @@ if __name__=="__main__":
             twist.linear.x = control_speed; twist.linear.y = control_speed_y; twist.linear.z = 0
             twist.angular.x = 0; twist.angular.y = 0; twist.angular.z = control_turn
             pub.publish(twist)
+
+            # sleep here
+            #time.sleep(0.500) # only for Tomato Challenge under problems in communication
 
             #print("loop: {0}".format(count))
             #print("target: vx: {0}, wz: {1}".format(target_speed, target_turn))
